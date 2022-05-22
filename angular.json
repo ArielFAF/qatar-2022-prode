@@ -103,6 +103,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "qatar-2022-prode:build:production",
+            "firebaseProject": "qatar-2022-prode",
+            "firebaseHostingSite": "qatar-2022-prode"
+          }
         }
       }
     }
