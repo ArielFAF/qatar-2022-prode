@@ -1,8 +1,8 @@
 {
-  "name": "qatar-2022-prode",
-  "short_name": "qatar-2022-prode",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "name": "Qatar 2022 Prode",
+  "short_name": "Qatar 2022 Prode",
+  "theme_color": "#63a194",
+  "background_color": "#b09677",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",

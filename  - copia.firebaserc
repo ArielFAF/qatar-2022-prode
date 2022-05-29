@@ -1,4 +1,7 @@
 {
+  "projects": {
+    "default": "qatar-2022-prode"
+  },
   "targets": {
     "qatar-2022-prode": {
       "hosting": {

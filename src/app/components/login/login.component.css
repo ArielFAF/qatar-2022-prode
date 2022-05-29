@@ -1,3 +1,28 @@
 .ancho100 {
     width: 100px
 }
+
+h2 {
+    color: var(--qatar5-color) !important;
+}
+
+.card {
+    margin: 10px;
+    background-color: var(--qatar2-color);
+}
+
+.card-header {
+    background-color: var(--qatar1-color);
+}
+
+.btn-primary {
+    background-color: var(--qatar1-color);
+}
+
+.btn-ml-20 {
+    margin-left: 20px !important;
+}
+
+.btn-info {
+    background-color: var(--qatar4-color);
+}

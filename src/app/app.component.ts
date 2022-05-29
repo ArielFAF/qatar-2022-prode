@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'qatar-2022-prode';
+  title = 'Qatar 2022 Prode';
 
   constructor(public loginService: LoginService, private router: Router) { }
 

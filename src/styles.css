@@ -1,10 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-    --qatar1-bg-color: #63a194;
-    --qatar2-bg-color: #ffffff;
-    --qatar3-bg-color: #e1c396;
-    --qatar4-bg-color: #b09677;
-    --qatar5-bg-color: #8d1c3d;
+    --qatar1-color: #63a194;
+    --qatar2-color: #ffffff;
+    --qatar3-color: #e1c396;
+    --qatar4-color: #b09677;
+    --qatar5-color: #8d1c3d;
   }
 
 html,
@@ -15,5 +15,5 @@ body {
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    background-color: var(--qatar3-bg-color);
+    background-color: var(--qatar3-color) !important;
 }
