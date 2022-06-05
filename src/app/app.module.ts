@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
@@ -22,6 +23,7 @@ import { RegisterComponent } from './components/register/register.component';
 
 // Servicios
 import { LoginService } from './services/login.service';
+import { CustomapiService } from './services/customapi.service';
 
 @NgModule({
   declarations: [
@@ -42,10 +44,12 @@ import { LoginService } from './services/login.service';
     NgxTwitterWidgetsModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFireMessagingModule
+    AngularFireMessagingModule,
+    HttpClientModule
   ],
   providers: [
-    LoginService
+    LoginService,
+    CustomapiService
   ],
   bootstrap: [AppComponent]
 })

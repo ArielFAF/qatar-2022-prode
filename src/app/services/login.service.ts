@@ -11,13 +11,9 @@ export class LoginService {
 
   personaLogueada: string = "";
 
-  // userRecord!: AngularFireList<any>;
-
   logueo: boolean = false;
 
   user: User;
-
-  // userList!: AngularFireList<any>;
 
   selectedUser: User = new User();
 

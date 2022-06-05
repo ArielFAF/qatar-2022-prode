@@ -4,6 +4,8 @@ import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 import { mergeMapTo } from 'rxjs/operators';
 
 import { LoginService } from './services/login.service';
+import { CustomapiService } from './services/customapi.service';
+
 import { User } from './models/user';
 
 @Component({
@@ -12,14 +14,21 @@ import { User } from './models/user';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Qatar 2022 Prode';
+  title = 'Qatar 2022';
 
   constructor(
     public loginService: LoginService, 
     private router: Router,
-    private angularFireMessaging: AngularFireMessaging) {
+    private angularFireMessaging: AngularFireMessaging,
+    private customApi: CustomapiService) {
       this.getToken();
       this.listen();
+
+      this.customApi.getData().then(
+        (repos) => {
+          console.log(repos);
+        }
+      );
      }
 
   salir() {
@@ -48,16 +57,16 @@ export class AppComponent {
   getToken() {
     this.angularFireMessaging.getToken.subscribe( res => {
       console.log("Token: ", res);
-      alert(res);
+      // alert(res);
 
-      let user = new User();
-      user.admin = true;
-      user.id = 'JGOZHRqfCYGWvANwOPz4';
-      user.name = 'Ariel';
-      user.pass = '123';
-      user.token = res;
+      // let user = new User();
+      // user.admin = true;
+      // user.id = 'JGOZHRqfCYGWvANwOPz4';
+      // user.name = 'Ariel';
+      // user.pass = '123';
+      // user.token = res;
 
-      this.loginService.updateUser(user, user.id);
+      // this.loginService.updateUser(user, user.id);
     });
   }
 
