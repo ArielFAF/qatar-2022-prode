@@ -54,7 +54,8 @@ export class LoginService {
         name: user.name,
         pass: user.pass,
         // group: Array;
-        admin: user.admin
+        admin: user.admin,
+        token: user.token
       });
   }
 

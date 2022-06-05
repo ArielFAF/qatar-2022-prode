@@ -4,4 +4,5 @@ export class User {
     pass: string;
     // group: Array;
     admin: boolean;
+    token: string;
 }

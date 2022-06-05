@@ -12,6 +12,7 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
 
 import { NgxTwitterWidgetsModule } from "ngx-twitter-widgets";
 
@@ -40,7 +41,8 @@ import { LoginService } from './services/login.service';
     }),
     NgxTwitterWidgetsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireMessagingModule
   ],
   providers: [
     LoginService
