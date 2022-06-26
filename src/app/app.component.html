@@ -1,17 +1,21 @@
 <nav class="navbar navbar-dark bg-dark">
-  
-  <a *ngIf="loginService.personaLogueada === 'Gerardo'" routerLink="/calculadora"
-    routerLinkActive="active">Calculadora</a>
+
+  <a *ngIf="loginService.personaLogueada">Hola {{loginService.personaLogueada}}!</a>
+
+  <a *ngIf="!loginService.personaLogueada">PRODE QATAR 2022</a>
+
+  <!-- <a *ngIf="loginService.personaLogueada === 'Gerardo'" routerLink="/calculadora"
+    routerLinkActive="active">Calculadora</a> -->
 
   <!-- <a *ngIf="loginService.personaLogueada === 'Elena'" routerLink="/resumen" routerLinkActive="active">Resumenes</a> -->
 
-  <a *ngIf="loginService.personaLogueada === 'Elena'" routerLink="/products" routerLinkActive="active">Lista de
-    Compras</a>
+  <!-- <a *ngIf="loginService.personaLogueada === 'Elena'" routerLink="/products" routerLinkActive="active">Lista de
+    Compras</a> -->
 
 
   <!-- <a *ngIf="loginService.personaLogueada === 'Gerardo'" routerLink="/prestamo" routerLinkActive="active">Prestamo</a> -->
 
-  <a *ngIf="loginService.personaLogueada === 'Gerardo'" routerLink="/vuelta" routerLinkActive="active">Vuelta</a>
+  <!-- <a *ngIf="loginService.personaLogueada === 'Gerardo'" routerLink="/vuelta" routerLinkActive="active">Vuelta</a> -->
 
   <!-- <div><a href="https://api.whatsapp.com/send?phone=5492216209330" target="_blank">
       <span style="font-size: 25px; color: rgb(77, 255, 71);">
@@ -19,12 +23,14 @@
       </span>
     </a></div> -->
 
-  <span style="color: rgb(255, 71, 71);" (click)="salir();">
-    <i class="fas fa-sign-out-alt"></i>
+  <span *ngIf="loginService.personaLogueada" class="icono" (click)="salir();">
+    <i class="fas fa-sign-out-alt icono"></i>
   </span>
 
-  <button (click)="requestPermission()">Solicitar</button>
+  <!-- <button (click)="requestPermission()">Solicitar</button> -->
 
 </nav>
+
+<alert></alert>
 
 <router-outlet></router-outlet>

@@ -30,7 +30,13 @@ export class LoginService {
     return this.angularFirestore.collection('users').doc(id).valueChanges();
   }
 
+  login(user: string, pass: string) {
+    // return this.angularFirestore.collection('users',ref => ref.where('name','==',user).where('pass','==',pass)).valueChanges();
+    return this.angularFirestore.collection('users',ref => ref.where('name','==',user.toUpperCase()).where('pass','==',pass)).valueChanges();
+  }
+
   createUser(user: User) {
+    user.name = user.name.toUpperCase(); // para evitar olvidos de mayusculas o minusculas...
     return new Promise<any>((resolve, reject) => {
       this.angularFirestore.collection('users').add(user)
         .then((response) => {

@@ -264,7 +264,8 @@ svg#clouds {
 
 /* Responsive Styles */
 @media screen and (max-width: 767px) {
-  .card-container > *:not(.circle-link) ,
+
+  .card-container>*:not(.circle-link),
   .terminal {
     width: 100%;
   }
@@ -294,5 +295,12 @@ svg#clouds {
 
 /* Qatar2022Ariel */
 nav {
-    background-color: var(--qatar5-color) !important;
+  background-color: var(--qatar5-color) !important;
+  color: var(--qatar2-color);
+  font-weight: bold;
+  padding: 10px;
+}
+
+.icono {
+  color: var(--qatar3-color);
 }

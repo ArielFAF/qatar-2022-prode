@@ -7,6 +7,7 @@ import { LoginService } from './services/login.service';
 import { CustomapiService } from './services/customapi.service';
 
 import { User } from './models/user';
+import { AlertService } from './services/alert.service';
 
 @Component({
   selector: 'app-root',
@@ -17,19 +18,20 @@ export class AppComponent {
   title = 'Qatar 2022';
 
   constructor(
-    public loginService: LoginService, 
+    public loginService: LoginService,
     private router: Router,
     private angularFireMessaging: AngularFireMessaging,
-    private customApi: CustomapiService) {
-      this.getToken();
-      this.listen();
+    private alertService: AlertService
+  ) {
+    this.getToken();
+    this.listen();
 
-      this.customApi.getData().then(
-        (repos) => {
-          console.log(repos);
-        }
-      );
-     }
+    // this.customApi.getData().then(
+    //   (repos) => {
+    //     console.log(repos);
+    //   }
+    // );
+  }
 
   salir() {
     localStorage.removeItem('personaLogueada');
@@ -49,13 +51,16 @@ export class AppComponent {
     this.angularFireMessaging.requestPermission
       .pipe(mergeMapTo(this.angularFireMessaging.tokenChanges))
       .subscribe(
-        (token) => { console.log('Permission granted! Save to the server! \n', token); },
-        (error) => { console.error(error); },  
+        (token) => { 
+          // console.log('Permission granted! Save to the server! \n', token); 
+          this.alertService.info('Permiso otorgado.', { keepAfterRouteChange: true });
+        },
+        (error) => { console.error(error); },
       );
   }
 
   getToken() {
-    this.angularFireMessaging.getToken.subscribe( res => {
+    this.angularFireMessaging.getToken.subscribe(res => {
       console.log("Token: ", res);
       // alert(res);
 
@@ -72,9 +77,10 @@ export class AppComponent {
 
   listen() {
     this.angularFireMessaging.messages
-      .subscribe((message) => { 
-        console.log(message); 
-        alert(message.notification.title + ": " + message.notification.body);
+      .subscribe((message) => {
+        console.log(message);
+        // alert(message.notification.title + ": " + message.notification.body);
+        this.alertService.info(message.notification.title + ": " + message.notification.body, { keepAfterRouteChange: true });
       });
   }
 

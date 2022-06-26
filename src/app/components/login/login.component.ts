@@ -6,6 +6,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user';
 
 import { LoginService } from 'src/app/services/login.service';
+import { AlertService } from 'src/app/services/alert.service';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -26,33 +28,42 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
 
-  source = {
-    "sourceType": "list",
-    "ownerScreenName": "ArielFAF",
-    "slug": "SicSic"
-  };
+  // source = {
+  //   "sourceType": "list",
+  //   "ownerScreenName": "ArielFAF",
+  //   "slug": "SicSic"
+  // };
 
-  options = {
-    "height": "350",
-    "width": "100%",
-    "chrome": ["noheader", "nofooter", "noborders"]
-    // "tweetLimit": 1
-    // borderColor: "blue"
-    // "theme": "light",
-    // "ariaPolite": "rude"
-    // "dnt": false
-  };
+  // options = {
+  //   "height": "350",
+  //   "width": "100%",
+  //   "chrome": ["noheader", "nofooter", "noborders"]
+  //   // "tweetLimit": 1
+  //   // borderColor: "blue"
+  //   // "theme": "light",
+  //   // "ariaPolite": "rude"
+  //   // "dnt": false
+  // };
 
+  public userForm: FormGroup;
 
   constructor(
     private router: Router,
-    public loginService: LoginService
-
+    public loginService: LoginService,
+    public formBuilder: FormBuilder,
+    private alertService: AlertService
     // private formBuilder: FormBuilder,
     //     private route: ActivatedRoute,
     // private accountService: AccountService,
     // private alertService: AlertService
-  ) { }
+  ) {
+    this.userForm = this.formBuilder.group(
+      {
+        name: [''],
+        pass: ['']
+      }
+    );
+  }
 
   ngOnInit(): void {
     this.parametros.persona = localStorage.getItem('personaLogueada');
@@ -60,18 +71,19 @@ export class LoginComponent implements OnInit {
     if (this.parametros.persona) {
       this.loginService.personaLogueada = this.parametros.persona;
       this.logueado = true;
-      this.ir(this.parametros.persona);
+      // this.ir(this.parametros.persona);
+      this.router.navigateByUrl('/principal');
     }
 
-    this.loginService.getUsers().subscribe((res) => {
-      this.Users = res.map((e) => {
-        return {
-          id: e.payload.doc.id,
-          ...(e.payload.doc.data() as User)
-        }
-      }
-      )
-    });
+    // this.loginService.getUsers().subscribe((res) => {
+    //   this.Users = res.map((e) => {
+    //     return {
+    //       id: e.payload.doc.id,
+    //       ...(e.payload.doc.data() as User)
+    //     }
+    //   }
+    //   )
+    // });
   }
 
   ingresar() {
@@ -111,25 +123,62 @@ export class LoginComponent implements OnInit {
     // this.alertService.clear();
 
     // stop here if form is invalid
-    if (this.form.invalid) {
+    if (this.userForm.invalid) {
       return;
     }
 
     this.loading = true;
 
-    // this.accountService.login(this.f.username.value, this.f.password.value)
+    // this.loginService.login(this.userForm.value.name, this.userForm.value.pass)
+    //     .subscribe(
+    //         (user): void => {
+    //         console.log(user);
+    //       },
+    //         (error) => {
+    //           console.log(error);
+    //         }
+    //     );
+
+    this.loginService.login(this.userForm.value.name, this.userForm.value.pass)
+      .pipe(first())
+      .subscribe(
+        (user: User[]): void => {
+          console.log(user);
+
+          if (user.length == 1) {
+            // this.alertService.success('Usuario encontrado!', { keepAfterRouteChange: true });
+            localStorage.setItem('personaLogueada', this.userForm.value.name);
+            this.loginService.personaLogueada = this.userForm.value.name;
+            this.router.navigateByUrl('/principal');
+          } else {
+            this.alertService.warn('Usuario NO encontrado!', { keepAfterRouteChange: true });
+          }
+
+          this.loading = false;
+        },
+        (error) => {
+          this.alertService.error(error, { keepAfterRouteChange: true });
+          console.log(error);
+          this.loading = false;
+        }
+      );
+
+    // this.accountService.register(this.form.value)
     //     .pipe(first())
     //     .subscribe({
     //         next: () => {
-    //             // get return url from query parameters or default to home page
-    //             const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    //             this.router.navigateByUrl(returnUrl);
+    //             this.alertService.success('Registration successful', { keepAfterRouteChange: true });
+    //             this.router.navigate(['../login'], { relativeTo: this.route });
     //         },
     //         error: error => {
     //             this.alertService.error(error);
     //             this.loading = false;
     //         }
     //     });
+  }
+
+  mostrarAlerta() {
+    this.alertService.info('generado con el boton', { keepAfterRouteChange: true });
   }
 
 }

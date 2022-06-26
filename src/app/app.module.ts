@@ -20,16 +20,21 @@ import { NgxTwitterWidgetsModule } from "ngx-twitter-widgets";
 // Componentes
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 // Servicios
 import { LoginService } from './services/login.service';
 import { CustomapiService } from './services/customapi.service';
+import { AlertService } from './services/alert.service';
+import { PrincipalComponent } from './components/principal/principal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AlertComponent,
+    PrincipalComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +54,8 @@ import { CustomapiService } from './services/customapi.service';
   ],
   providers: [
     LoginService,
-    CustomapiService
+    CustomapiService,
+    AlertService
   ],
   bootstrap: [AppComponent]
 })
