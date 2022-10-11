@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  apiURL: 'https://valvar-services.000webhostapp.com/',
   firebase: {
     projectId: 'qatar-2022-prode',
     appId: '1:636192393901:web:ba4dd22310b5520cdbd424',

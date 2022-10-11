@@ -21,12 +21,13 @@ import { NgxTwitterWidgetsModule } from "ngx-twitter-widgets";
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { PrincipalComponent } from './components/principal/principal.component';
 
 // Servicios
 import { LoginService } from './services/login.service';
 import { CustomapiService } from './services/customapi.service';
 import { AlertService } from './services/alert.service';
-import { PrincipalComponent } from './components/principal/principal.component';
+import { MysqlService } from './services/mysql.service';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { PrincipalComponent } from './components/principal/principal.component';
   providers: [
     LoginService,
     CustomapiService,
-    AlertService
+    AlertService,
+    MysqlService
   ],
   bootstrap: [AppComponent]
 })

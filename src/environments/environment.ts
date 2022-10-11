@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  apiURL: 'http://localhost/apiTest/',
   firebase: {
     projectId: 'qatar-2022-prode',
     appId: '1:636192393901:web:ba4dd22310b5520cdbd424',

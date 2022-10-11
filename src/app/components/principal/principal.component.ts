@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MysqlService } from 'src/app/services/mysql.service';
 
 @Component({
   selector: 'app-principal',
@@ -19,9 +20,16 @@ export class PrincipalComponent implements OnInit {
     "chrome": ["noheader", "nofooter", "noborders"]
   };
 
-  constructor() { }
+  datos: any;
+
+  constructor(private mysqlService: MysqlService) { }
 
   ngOnInit(): void {
+    this.mysqlService.fixture().subscribe( resp => {
+      console.log(resp);
+      this.datos = resp;
+    }); 
+    // console.log(this.datos);
   }
 
 }

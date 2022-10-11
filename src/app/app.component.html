@@ -23,11 +23,15 @@
       </span>
     </a></div> -->
 
-  <span *ngIf="loginService.personaLogueada" class="icono" (click)="salir();">
+  <span *ngIf="loginService.personaLogueada" class="icono" (click)="salir();" style="cursor: pointer;">
     <i class="fas fa-sign-out-alt icono"></i>
   </span>
 
   <!-- <button (click)="requestPermission()">Solicitar</button> -->
+
+  <span class="icono" (click)="requestPermission();" style="cursor: pointer;">
+    <i class="fas fa-tools icono"></i>
+  </span>
 
 </nav>
 

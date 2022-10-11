@@ -51,7 +51,7 @@ export class AppComponent {
     this.angularFireMessaging.requestPermission
       .pipe(mergeMapTo(this.angularFireMessaging.tokenChanges))
       .subscribe(
-        (token) => { 
+        (token) => {
           // console.log('Permission granted! Save to the server! \n', token); 
           this.alertService.info('Permiso otorgado.', { keepAfterRouteChange: true });
         },
@@ -64,14 +64,14 @@ export class AppComponent {
       console.log("Token: ", res);
       // alert(res);
 
-      // let user = new User();
-      // user.admin = true;
-      // user.id = 'JGOZHRqfCYGWvANwOPz4';
-      // user.name = 'Ariel';
-      // user.pass = '123';
-      // user.token = res;
+      let user = new User();
+      user.admin = true;
+      user.id = 'JGOZHRqfCYGWvANwOPz4';
+      user.name = 'ARIEL';
+      user.pass = '123';
+      user.token = res;
 
-      // this.loginService.updateUser(user, user.id);
+      this.loginService.updateUser(user, user.id);
     });
   }
 

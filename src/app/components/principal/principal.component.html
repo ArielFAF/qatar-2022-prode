@@ -1,4 +1,27 @@
 <div class="container">
+
+    <!-- <img src="../../../assets/icons/flags/argentina.jpg" alt="Argentina"> -->
+
+    <table>
+        <thead>
+            <th>g</th>
+            <th>f</th>
+            <th>d</th>
+            <th>local</th>
+            <th>visitante</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let equ of datos">
+                <td style="border-width: thin">{{equ.grupo}}</td>
+                <td style="border-width: thin">{{equ.fecha}}</td>
+                <td style="border-width: thin">{{equ.dia}}</td>
+                <td style="border-width: thin"><img src={{equ.imlocal}}> {{equ.eqlocal}}</td>
+                <td style="border-width: thin"> {{equ.eqvisitante}} <img src={{equ.imvisitante}}></td>
+            </tr>
+        </tbody>
+    </table>
+
+
     <h2 class="text-center">
         Tweets Qatar 2022
     </h2>
